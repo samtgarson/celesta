@@ -1,11 +1,9 @@
-import Vue from 'nativescript-vue';
-import VueRouter from 'vue-router';
+import Vue from 'nativescript-vue'
+import VueRouter from 'vue-router'
 
-Vue.use(VueRouter);
+import Home from '../pages/Home'
 
-import Home from '../components/Home';
-import HelloWorld from '../components/HelloWorld';
-import Counter from '../components/Counter';
+Vue.use(VueRouter)
 
 const router = new VueRouter({
   pageRouting: true,
@@ -14,27 +12,13 @@ const router = new VueRouter({
       path: '/home',
       component: Home,
       meta: {
-        title: 'Home',
-      },
+        title: 'Home'
+      }
     },
-    {
-      path: '/hello',
-      component: HelloWorld,
-      meta: {
-        title: 'Hello World',
-      },
-    },
-    {
-      path: '/counter',
-      component: Counter,
-      meta: {
-        title: 'Counter',
-      },
-    },
-    {path: '*', redirect: '/home'},
-  ],
-});
+    { path: '*', redirect: '/home' }
+  ]
+})
 
-router.replace('/home');
+router.replace('/home')
 
-module.exports = router;
+module.exports = router
