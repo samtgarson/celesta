@@ -4,6 +4,7 @@
   "description": "Keep on top of your music practice",
   "author": "Sam Garson <samtgarson@gmail.com>",
   "license": "MIT",
+  "repository": "https://github.com/samtgarson/celesta",
   "scripts": {
     "build": "webpack --env.tnsAction build",
     "build:android": "npm run build -- --env.android",
@@ -18,7 +19,7 @@
     "test:lint": "eslint ./src"
   },
   "dependencies": {
-    "nativescript-theme-core": "^1.0.4",
+    "nativescript-plugin-firebase": "^5.3.1",
     "nativescript-vue": "^1.3.1",
     "tns-core-modules": "~3.4.1",
     "vue-router": "^3.0.1",
@@ -63,6 +64,9 @@
     ]
   },
   "eslintConfig": {
-    "extends": "@samtgarson"
+    "extends": "@samtgarson",
+    "globals": {
+      "DEBUG": true
+    }
   }
 }
