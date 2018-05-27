@@ -6,19 +6,18 @@ import Home from '../pages/Home'
 Vue.use(VueRouter)
 
 const router = new VueRouter({
-  pageRouting: true,
   routes: [
     {
-      path: '/home',
+      path: '/',
       component: Home,
       meta: {
         title: 'Home'
       }
     },
-    { path: '*', redirect: '/home' }
+    { path: '*', redirect: '/' }
   ]
 })
 
-router.replace('/home')
+router.replace('/')
 
 module.exports = router
