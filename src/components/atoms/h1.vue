@@ -1,5 +1,5 @@
 <template>
-  <p class="h1" v-bind="$attrs">
+  <p class="h1" v-bind="$attrs" v-on="$listeners">
     <slot />
   </p>
 </template>

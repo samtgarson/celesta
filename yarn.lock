@@ -2928,6 +2928,10 @@ indexof@0.0.1:
   version "0.0.1"
   resolved "https://registry.npmjs.org/indexof/-/indexof-0.0.1.tgz#82dc336d232b9062179d05ab3293a66059fd435d"
 
+inflect@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.npmjs.org/inflect/-/inflect-0.4.0.tgz#6a33016a6368d8a70d2513fd230ce8722e980573"
+
 inflight@^1.0.4:
   version "1.0.6"
   resolved "https://registry.npmjs.org/inflight/-/inflight-1.0.6.tgz#49bd6331d7d02d0c09bc910a1075ba8165b56df9"

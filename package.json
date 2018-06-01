@@ -19,6 +19,7 @@
     "test:lint": "eslint ./src"
   },
   "dependencies": {
+    "inflect": "^0.4.0",
     "nativescript": "4.0.2",
     "nativescript-localstorage": "^1.1.5",
     "nativescript-plugin-firebase": "^5.3.1",
