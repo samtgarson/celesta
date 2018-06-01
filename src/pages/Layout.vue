@@ -1,9 +1,10 @@
 <template>
-  <Page :backgroundSpanUnderStatusBar="true" :actionBarHidden="true" ref="page">
+  <Page :backgroundSpanUnderStatusBar="true" :actionBarHidden="true" class="page">
     <AbsoluteLayout>
       <StackLayout top="0" left="0" height="100%" width="100%" v-if="ready">
         <router-view ref="view"/>
       </StackLayout>
+      <router-view name="modal" />
     </AbsoluteLayout>
   </Page>
 </template>
@@ -19,3 +20,11 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+@import '../assets/vars';
+
+.page {
+  background-color: $bg;
+}
+</style>

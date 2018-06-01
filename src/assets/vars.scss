@@ -1,0 +1,16 @@
+$bg: #F7F8FA;
+$body: #3E537E;
+
+$green: #67CB55;
+$amber: #F79C41;
+$red: #DF1A5C;
+
+$body-size: 20;
+$body-line-height: 8;
+
+@mixin body-text {
+  font-family: Inter UI, sans-serif;
+  text-rendering: geometricPrecision;
+  font-size: $body-size;
+  line-height: $body-line-height;
+}

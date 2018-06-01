@@ -49,8 +49,10 @@ const config = (platform, launchArgs, tnsAction) => {
 
       // Minify JavaScript code
       new UglifyJsPlugin({
-        compress: { warnings: false },
-        output: { comments: false }
+        uglifyOptions: {
+          compress: { warnings: false },
+          output: { comments: false }
+        }
       })
     )
   }
