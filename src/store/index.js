@@ -20,7 +20,7 @@ const modules = {
 const store = new Vuex.Store({
   plugins,
   modules,
-  strict: DEBUG,
+  strict: false,
   ...base
 })
 

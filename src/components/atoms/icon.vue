@@ -5,9 +5,8 @@
 <script>
 export default {
   props: {
-    colour: {
-      type: String,
-      validate: s => ['blue', 'white'].includes(s)
+    namespace: {
+      type: String
     },
     name: {
       type: String,
@@ -16,7 +15,7 @@ export default {
   },
   computed: {
     src () {
-      return `res://icons/${this.colour}/${this.name}`
+      return `res://icons/${this.namespace}/${this.name}`
     }
   }
 }

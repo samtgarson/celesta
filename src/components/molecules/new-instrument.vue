@@ -11,7 +11,7 @@
     <select v-model="type" :items="items" ref="select" />
     <FlexboxLayout @tap="submit" class="button" horizontalAlignment="right">
       <p>Let's Go</p>
-      <icon colour="white" name="chevron-right" />
+      <icon namespace="white" name="chevron-right" />
      </FlexboxLayout>
   </mood-box>
 </template>

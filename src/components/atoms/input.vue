@@ -1,7 +1,7 @@
 <template>
   <FlexboxLayout class="input-wrapper">
     <TextField flexGrow="1" class="input" v-bind="$attrs" v-on="$listeners" v-model="val" />
-    <icon colour="white" name="alert-circle" v-if="invalid" flexGrow="0" />
+    <icon namespace="white" name="alert-circle" v-if="invalid" flexGrow="0" />
   </FlexboxLayout>
 </template>
 
