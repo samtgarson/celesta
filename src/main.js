@@ -1,24 +1,23 @@
 import Vue from 'nativescript-vue'
-import firebase from 'nativescript-plugin-firebase'
+import 'nativescript-localstorage'
 import router from './router'
 import store from './store'
 import Auth from './services/auth'
+import Layout from './pages/Layout'
+import './plugins'
 
-// Uncommment the following to see NativeScript-Vue output logs
-Vue.config.silent = false
-
-Vue.prototype.$firebase = firebase
-store.$firebase = firebase
-
-const auth = new Auth()
-Vue.prototype.$auth = auth
-store.$auth = auth
+Vue.config.silent = !DEBUG
 
 global.app = new Vue({
   router,
   store,
+  render: h => h(Layout),
   mounted () {
-    this.$auth.init()
+    const auth = new Auth({
+      store: this.$store,
+      firebase: this.$firebase
+    })
+    auth.init()
   }
 })
 

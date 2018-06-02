@@ -1,19 +1,13 @@
 <template>
-  <Page class="page">
-    <ActionBar class="action-bar" title="Home"/>
-    <StackLayout>
-      <Label>{{ user.uid }}</Label>
-      <Button class="btn btn-primary" @tap="$router.push('/counter')">Counter</Button>
-      <Button class="btn btn-primary" @tap="$router.push('/hello')">Hello World</Button>
-    </StackLayout>
-
-  </Page>
+  <div>
+    <p>User: {{ $currentUser.uid }}</p>
+    <p>{{ $store.getters['instruments/active'] }}</p>
+  </div>
 </template>
 <script>
-import { mapState } from 'vuex'
-
 export default {
-  computed: mapState(['user']),
+  mounted () {
+    if (this.$store.getters['instruments/empty']) this.$router.push({ name: 'onboard' })
+  }
 }
 </script>
-

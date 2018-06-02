@@ -2,23 +2,28 @@ import Vue from 'nativescript-vue'
 import VueRouter from 'vue-router'
 
 import Home from '../pages/Home'
+import Onboard from '../pages/Onboard'
 
 Vue.use(VueRouter)
 
 const router = new VueRouter({
-  pageRouting: true,
   routes: [
     {
-      path: '/home',
-      component: Home,
-      meta: {
-        title: 'Home'
+      name: 'home',
+      path: '/',
+      component: Home
+    },
+    {
+      name: 'onboard',
+      path: '/onboard',
+      components: {
+        modal: Onboard
       }
     },
-    { path: '*', redirect: '/home' }
+    { path: '*', redirect: '/' }
   ]
 })
 
-router.replace('/home')
+router.replace('/')
 
 module.exports = router

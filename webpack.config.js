@@ -7,6 +7,7 @@ const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const WebpackSynchronizableShellPlugin = require('webpack-synchronizable-shell-plugin')
 const NativeScriptVueExternals = require('nativescript-vue-externals')
 const NativeScriptVueTarget = require('nativescript-vue-target')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 // Prepare NativeScript application from template (if necessary)
 require('./prepare')()
@@ -37,9 +38,8 @@ const config = (platform, launchArgs, tnsAction) => {
 
   ]
 
-  if (tnsAction !== 'debug') {
+  if (tnsAction === 'build') {
     plugins.push(
-
       // Optimize CSS output
       new OptimizeCssAssetsPlugin({
         cssProcessor: require('cssnano'),
@@ -48,19 +48,20 @@ const config = (platform, launchArgs, tnsAction) => {
       }),
 
       // Minify JavaScript code
-      new webpack.optimize.UglifyJsPlugin({
-        compress: { warnings: false },
-        output: { comments: false }
-      }),
-
-    )
-  } else {
-    plugins.push(
-      new webpack.DefinePlugin({
-        DEBUG: JSON.stringify(true)
+      new UglifyJsPlugin({
+        uglifyOptions: {
+          compress: { warnings: false },
+          output: { comments: false }
+        }
       })
     )
   }
+
+  plugins.push(
+    new webpack.DefinePlugin({
+      DEBUG: JSON.stringify(tnsAction === 'debug')
+    })
+  )
 
   // CSS / SCSS style extraction loaders
   const cssLoader = ExtractTextPlugin.extract({
@@ -88,7 +89,10 @@ const config = (platform, launchArgs, tnsAction) => {
 
     target: NativeScriptVueTarget,
 
-    entry: path.resolve(__dirname, './src/main.js'),
+    entry: [
+      'babel-polyfill',
+      path.resolve(__dirname, './src/main.js')
+    ],
 
     output: {
       path: path.resolve(__dirname, './dist/app'),

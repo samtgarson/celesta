@@ -1,2 +1,5 @@
 # NativeScript application
 /dist
+
+# yarn errors
+yarn-error.log

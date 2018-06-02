@@ -1,39 +1,27 @@
-import firebase from 'nativescript-plugin-firebase'
-import store from '../store'
-
 export default class Auth {
-  constructor () {
+  constructor ({ store, firebase }) {
     this.store = store
+    this.firebase = firebase
   }
 
   init () {
-    firebase.init({ onAuthStateChanged: data => this.onStateChange(data) })
-    firebase.getCurrentUser()
-      .catch(() => {
-        this.login()
-      })
+    this.firebase.init({ onAuthStateChanged: data => this.onStateChange(data) })
+    if (this.store.state.user.uid) return
+    this.getUser()
   }
 
-  onStateChange ({ user }) {
-    if (user) this.user = user
-    else this.logout()
+  async getUser () {
+    const user = await this.firebase.getCurrentUser()
+    if (user) return this.onStateChange({ user })
+    return this.login()
   }
 
-  // eslint-disable-next-line class-methods-use-this
+  onStateChange ({ user = {} }) {
+    this.store.dispatch('updateUser', user)
+  }
+
   login () {
-    const type = firebase.LoginType.ANONYMOUS
-    firebase.login({ type })
-  }
-
-  set user (u) {
-    this.store.commit('setUser', u)
-  }
-
-  get user () {
-    return this.store.state.user
-  }
-
-  logout () {
-    this.store.commit('setUser', null)
+    const type = this.firebase.LoginType.ANONYMOUS
+    this.firebase.login({ type })
   }
 }
