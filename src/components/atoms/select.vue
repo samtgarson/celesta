@@ -2,7 +2,7 @@
   <div class="select">
     <FlexboxLayout @tap="open = !open" class="input-wrapper">
       <p flexGrow="1">{{ label }}</p>
-      <icon colour="white" name="chevron-down" flexGrow="0" ref="arrow"/>
+      <icon namespace="white" name="chevron-down" flexGrow="0" ref="arrow"/>
     </FlexboxLayout>
     <ListPicker @selectedIndexChange="choose" :originY="0" :class="['picker', { open }]" :items="labels" ref="picker" />
   </div>

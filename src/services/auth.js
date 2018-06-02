@@ -11,8 +11,12 @@ export default class Auth {
   }
 
   async getUser () {
-    const user = await this.firebase.getCurrentUser()
-    if (user) return this.onStateChange({ user })
+    try {
+      const user = await this.firebase.getCurrentUser()
+      if (user) return this.onStateChange({ user })
+    } catch (e) {
+      if (DEBUG) console.error(e)
+    }
     return this.login()
   }
 
