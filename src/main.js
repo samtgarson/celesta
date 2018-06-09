@@ -18,7 +18,10 @@ global.app = new Vue({
       firebase: this.$firebase
     })
     auth.init()
+    this.$store.dispatch('time/start')
   }
 })
 
-global.app.$start()
+global.app.$start({
+  getRootView: vm => vm.$el.nativeView
+})

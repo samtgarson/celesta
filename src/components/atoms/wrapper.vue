@@ -15,6 +15,6 @@ export default {
 
 .wrapper {
   background-color: $bg;
-  padding: 17pt;
+  padding: $small-margin;
 }
 </style>

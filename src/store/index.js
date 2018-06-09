@@ -4,6 +4,8 @@ import VuexPersistence from 'vuex-persist'
 import createLogger from 'vuex/dist/logger'
 import * as base from './base'
 import * as instruments from './instruments'
+import * as practices from './practices'
+import * as time from './time'
 
 Vue.use(Vuex)
 const vuexLocal = new VuexPersistence({
@@ -14,7 +16,9 @@ const plugins = [vuexLocal.plugin]
 if (DEBUG) plugins.push(createLogger())
 
 const modules = {
-  instruments
+  time,
+  instruments,
+  practices
 }
 
 const store = new Vuex.Store({

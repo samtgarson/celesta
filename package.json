@@ -9,6 +9,7 @@
     "build": "webpack --env.tnsAction build",
     "build:android": "npm run build -- --env.android",
     "build:ios": "npm run build -- --env.ios",
+    "dev": "yarn watch:ios",
     "debug": "webpack --watch --env.tnsAction debug",
     "debug:android": "npm run debug -- --env.android",
     "debug:ios": "npm run debug -- --env.ios",
@@ -16,15 +17,19 @@
     "watch:android": "npm run watch -- --env.android",
     "watch:ios": "npm run watch -- --env.ios",
     "clean": "rimraf dist",
-    "test:lint": "eslint ./src"
+    "test:lint": "eslint --ignore-path .gitignore  --ext .js,.vue ./src",
+    "test:unit": "NODE_ENV=test jest",
+    "test:watch": "jest --watch",
+    "test": "yarn test:unit && yarn test:lint"
   },
   "dependencies": {
+    "dayjs": "^1.6.5",
     "inflect": "^0.4.0",
-    "nativescript": "4.0.2",
+    "nativescript": "4.1.2",
     "nativescript-localstorage": "^1.1.5",
     "nativescript-plugin-firebase": "^5.3.1",
-    "nativescript-vue": "^1.3.1",
-    "tns-core-modules": "~3.4.1",
+    "nativescript-vue": "1.4.0-alpha.0",
+    "tns-core-modules": "^4.1.0",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1",
     "vuex-persist": "^1.2.2"
@@ -40,7 +45,9 @@
     "css-loader": "^0.28.11",
     "eslint": "^4.19.1",
     "extract-text-webpack-plugin": "^3.0.2",
+    "faker": "^4.1.0",
     "fs-extra": "^5.0.0",
+    "jest": "^23.1.0",
     "nativescript-vue-externals": "^0.2.0",
     "nativescript-vue-loader": "^0.1.5",
     "nativescript-vue-target": "^0.1.0",
@@ -49,8 +56,10 @@
     "ns-vue-loader": "^0.1.2",
     "optimize-css-assets-webpack-plugin": "^3.2.0",
     "rimraf": "^2.6.2",
+    "rosie": "^2.0.1",
     "sass-loader": "^6.0.7",
     "uglifyjs-webpack-plugin": "^1.2.5",
+    "vue-jest": "^2.6.0",
     "vue-template-compiler": "^2.5.16",
     "webpack": "^3.11.0",
     "webpack-synchronizable-shell-plugin": "0.0.7",
@@ -72,7 +81,39 @@
   "eslintConfig": {
     "extends": "@samtgarson",
     "globals": {
-      "DEBUG": true
+      "DEBUG": true,
+      "UIApplication": true,
+      "UIBarStyle": true
     }
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "vue",
+      "json"
+    ],
+    "transform": {
+      "^.+\\.js$": "babel-jest",
+      ".*\\.(vue)$": "vue-jest"
+    },
+    "testMatch": [
+      "**/test/**/*.js"
+    ],
+    "testPathIgnorePatterns": [
+      "node_modules",
+      "<rootDir>/test/support"
+    ],
+    "browser": true,
+    "modulePaths": [
+      "node_modules",
+      "<rootDir>"
+    ],
+    "modulePathIgnorePatterns": [
+      "<rootDir>/dist"
+    ],
+    "moduleNameMapper": {
+      "^@/(.+)": "<rootDir>/src/$1"
+    },
+    "setupTestFrameworkScriptFile": "<rootDir>/test/support/index.js"
   }
 }

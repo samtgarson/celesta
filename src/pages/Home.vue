@@ -1,12 +1,20 @@
 <template>
   <div>
-    <p>User: {{ $currentUser.uid }}</p>
-    <p>{{ $store.getters['instruments/active'] }}</p>
+    <home-summary />
+    <wrapper>
+      <box>
+        <p>Hello!</p>
+      </box>
+    </wrapper>
   </div>
 </template>
 <script>
+import HomeSummary from '../components/home-summary'
+
 export default {
-  mounted () {
+  components: { HomeSummary },
+  lightNav: true,
+  created () {
     if (this.$store.getters['instruments/empty']) this.$router.push({ name: 'onboard' })
   }
 }

@@ -1,27 +1,37 @@
 <template>
-  <div :class="['mood-box', 'white', colour, position]">
+  <div :class="['mood-box', 'white', colour, ...position]">
     <slot />
   </div>
 </template>
 
 <script>
+import { GOOD, MEDIUM, BAD } from '@/assets/constants/moods'
+import parentPosition from '@/assets/helpers/parent-position'
+
+const colours = {
+  [GOOD]: 'green',
+  [MEDIUM]: 'amber',
+  [BAD]: 'red'
+}
+
 export default {
   name: 'MoodBox',
   data () {
-    return { position: '' }
+    return { position: [] }
   },
   props: {
-    colour: {
+    mood: {
       type: String,
-      validate: str => ['red', 'amber', 'green'].includes(str)
+      validate: str => [GOOD, MEDIUM, BAD].includes(str)
+    }
+  },
+  computed: {
+    colour () {
+      return colours[this.mood]
     }
   },
   mounted () {
-    const index = this.$parent.$children.indexOf(this)
-    const total = this.$parent.$children.length
-
-    if (index === 0) this.position = 'first'
-    if (index === total - 1) this.position = 'last'
+    this.position = parentPosition(this)
   }
 }
 </script>
@@ -30,17 +40,17 @@ export default {
 @import '../../assets/vars';
 
 .mood-box {
-  margin-left: -27;
-  margin-right: -27;
-  padding: 27;
+  margin-left: -$big-margin;
+  margin-right: -$big-margin;
+  padding: $big-margin;
 }
 
 .first {
-  margin-top: -27;
+  margin-top: -$big-margin;
 }
 
 .last {
-  margin-bottom: -27;
+  margin-bottom: -$big-margin;
 }
 
 .red {

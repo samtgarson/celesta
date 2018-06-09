@@ -3,6 +3,8 @@
 </template>
 
 <script>
+import { GOOD, MEDIUM, BAD } from '@/assets/constants/moods'
+
 export default {
   props: {
     colour: {
@@ -11,12 +13,19 @@ export default {
     },
     mood: {
       type: String,
-      validate: s => ['happy', 'middle', 'sad'].includes(s)
+      validate: s => [GOOD, MEDIUM, BAD].includes(s)
     }
   },
   computed: {
+    faceMood () {
+      return {
+        [GOOD]: 'happy',
+        [MEDIUM]: 'middle',
+        [BAD]: 'sad'
+      }[this.mood]
+    },
     src () {
-      return `res://faces/${this.colour}/${this.mood}`
+      return `res://faces/${this.colour}/${this.faceMood}`
     }
   }
 }

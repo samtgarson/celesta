@@ -10,7 +10,7 @@
 </template>
 <script>
 import Face from '../components/face'
-import NewInstrument from '../components/molecules/new-instrument'
+import NewInstrument from '../components/new-instrument'
 
 export default {
   components: { Face, NewInstrument },

@@ -1,0 +1,5 @@
+export const TOO_SOON = 'TOO_SOON'
+export const NOT_MET_GOALS = 'NOT_MET_GOALS'
+export const NOT_ENJOYING = 'NOT_ENJOYING'
+export const GOING_WELL = 'GOING_WELL'
+export const NO_PRACTICES = 'NO_PRACTICES'

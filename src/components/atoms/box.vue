@@ -11,9 +11,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../../assets/vars';
+
 .box {
   background-color: white;
-  padding: 27;
+  padding: $big-margin;
   border-radius: 5;
 }
 </style>

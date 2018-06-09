@@ -1,5 +1,5 @@
 <template>
-  <mood-box colour="green">
+  <mood-box :mood="mood">
     <input 
       :invalid="submitted && !name" 
       v-model="name" 
@@ -19,8 +19,9 @@
 <script>
 import { titleize } from 'inflect'
 import { createNamespacedHelpers } from 'vuex'
-import MoodBox from './mood-box'
-import instruments from '../../assets/helpers/instruments'
+import { GOOD } from '@/assets/constants/moods'
+import MoodBox from '../molecules/mood-box'
+import instruments from './instruments'
 
 const { mapActions } = createNamespacedHelpers('instruments')
 const items = instruments.reduce((hsh, i) => ({
@@ -31,7 +32,7 @@ const items = instruments.reduce((hsh, i) => ({
 export default {
   components: { MoodBox },
   data () {
-    return { name: '', type: '', items, submitted: false }
+    return { name: '', type: '', items, submitted: false, mood: GOOD }
   },
   computed: {
     valid () { return this.name.length }

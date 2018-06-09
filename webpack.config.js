@@ -142,8 +142,7 @@ const config = (platform, launchArgs, tnsAction) => {
         '.vue'
       ],
       alias: {
-        Components: path.resolve(__dirname, '../components/'),
-        src: path.resolve(__dirname, 'src/')
+        '@': path.resolve(__dirname, 'src/')
       }
     },
 
